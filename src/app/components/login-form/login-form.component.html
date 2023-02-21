@@ -1,0 +1,30 @@
+<form>
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="Email address"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+    />
+  </div>
+  <div class="form-group">
+    <input type="checkbox" id="remember"> | 
+    <label for="remember">Remember password</label>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-danger" type="submit" *ngIf="loginMode">Login</button>
+    <button class="btn btn-success" type="submit" *ngIf="!loginMode">Sign-Up</button> | 
+    <button class="btn btn-primary" type="button" (click)="onSwitchMode()">Switch to {{ loginMode ? 'sign-up' : 'login'}}</button>
+  </div>
+  <a>Forget password? Click here</a>
+</form>
