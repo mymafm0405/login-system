@@ -1,4 +1,9 @@
-<form>
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="form-group" *ngIf="error">
+        <div class="alert alert-danger">
+            <h4>{{ error }}</h4>
+        </div>
+    </div>
   <div class="form-group">
     <label for="email">Email address:</label>
     <input
@@ -6,6 +11,10 @@
       class="form-control"
       id="email"
       placeholder="Email address"
+      ngModel
+      name="email"
+      required
+      email
     />
   </div>
   <div class="form-group">
@@ -15,16 +24,32 @@
       class="form-control"
       id="password"
       placeholder="Password"
+      ngModel
+      name="password"
+      required
+      minlength="6"
     />
   </div>
   <div class="form-group">
-    <input type="checkbox" id="remember"> | 
+    <input type="checkbox" id="remember" /> |
     <label for="remember">Remember password</label>
   </div>
   <div class="form-group">
-    <button class="btn btn-danger" type="submit" *ngIf="loginMode">Login</button>
-    <button class="btn btn-success" type="submit" *ngIf="!loginMode">Sign-Up</button> | 
-    <button class="btn btn-primary" type="button" (click)="onSwitchMode()">Switch to {{ loginMode ? 'sign-up' : 'login'}}</button>
+    <button class="btn btn-danger" type="submit" *ngIf="loginMode" [disabled]="!f.valid">
+      Login
+    </button>
+    <button
+      class="btn btn-success"
+      type="submit"
+      *ngIf="!loginMode"
+      [disabled]="!f.valid"
+    >
+      Sign-Up
+    </button>
+    |
+    <button class="btn btn-primary" type="button" (click)="onSwitchMode()">
+      Switch to {{ loginMode ? "sign-up" : "login" }}
+    </button>
   </div>
   <a>Forget password? Click here</a>
 </form>
