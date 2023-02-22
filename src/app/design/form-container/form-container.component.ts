@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from 'src/app/shared/login.service';
 
 @Component({
   selector: 'app-form-container',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./form-container.component.css']
 })
 export class FormContainerComponent {
+  hide = false;
+  
+  constructor(private loginServ: LoginService) {}
 
+  ngOnInit() {
+    this.loginServ.user.subscribe((user) => {
+      this.hide = !!user;
+    });
+  }
 }

@@ -7,13 +7,15 @@ import { HeaderComponent } from './design/header/header.component';
 import { FormContainerComponent } from './design/form-container/form-container.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
+import { LoadingComponent } from './design/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FormContainerComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

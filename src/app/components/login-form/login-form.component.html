@@ -1,9 +1,12 @@
 <form (ngSubmit)="onSubmit()" #f="ngForm">
-    <div class="form-group" *ngIf="error">
-        <div class="alert alert-danger">
-            <h4>{{ error }}</h4>
-        </div>
+  <div class="loading" *ngIf="loading">
+    <app-loading></app-loading>
+  </div>
+  <div class="form-group" *ngIf="error">
+    <div class="alert alert-danger">
+      <h4>{{ error }}</h4>
     </div>
+  </div>
   <div class="form-group">
     <label for="email">Email address:</label>
     <input
@@ -35,19 +38,29 @@
     <label for="remember">Remember password</label>
   </div>
   <div class="form-group">
-    <button class="btn btn-danger" type="submit" *ngIf="loginMode" [disabled]="!f.valid">
+    <button
+      class="btn btn-danger"
+      type="submit"
+      *ngIf="loginMode"
+      [disabled]="!f.valid || loading"
+    >
       Login
     </button>
     <button
       class="btn btn-success"
       type="submit"
       *ngIf="!loginMode"
-      [disabled]="!f.valid"
+      [disabled]="!f.valid || loading"
     >
       Sign-Up
     </button>
     |
-    <button class="btn btn-primary" type="button" (click)="onSwitchMode()">
+    <button
+      class="btn btn-primary"
+      type="button"
+      (click)="onSwitchMode()"
+      [disabled]="loading"
+    >
       Switch to {{ loginMode ? "sign-up" : "login" }}
     </button>
   </div>
