@@ -8,6 +8,8 @@ import { FormContainerComponent } from './design/form-container/form-container.c
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from './design/loading/loading.component';
+import { AddPostComponent } from './components/add-post/add-post.component';
+import { AddPostContainerComponent } from './design/add-post-container/add-post-container.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { LoadingComponent } from './design/loading/loading.component';
     HeaderComponent,
     FormContainerComponent,
     LoginFormComponent,
-    LoadingComponent
+    LoadingComponent,
+    AddPostComponent,
+    AddPostContainerComponent
   ],
   imports: [
     BrowserModule,
