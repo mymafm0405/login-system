@@ -49,6 +49,6 @@ export class LoginService {
   autoLogout(expireTime: number) {
     this.logoutTimer = setTimeout(() => {
       this.logout()
-    }, 10000)
+    }, expireTime)
   }
 }
