@@ -18,7 +18,6 @@ export class HeaderComponent {
   }
 
   onLogout() {
-    this.loginServ.user.next(null);
-    localStorage.removeItem('userData')
+    this.loginServ.logout();
   }
 }

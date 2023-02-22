@@ -11,10 +11,28 @@ export class AppComponent {
   constructor(private loginServ: LoginService) {}
 
   ngOnInit() {
-    const user: User = JSON.parse(localStorage.getItem('userData'));
-    if (user) {
-      console.log(user);
-      this.loginServ.user.next(user);
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData) {
+      const currentUser = new User(
+        userData.idToken,
+        userData.email,
+        userData.refreshToken,
+        userData.expiresIn,
+        userData.localId
+      );
+      if (userData.expDate < new Date()) {
+        console.log('user expired');
+
+        console.log(userData.expDate);
+        console.log(new Date());
+        this.loginServ.logout();
+        return;
+      }
+      console.log(userData.expDate);
+      console.log(new Date());
+
+      console.log(currentUser);
+      this.loginServ.user.next(currentUser);
     }
   }
 }

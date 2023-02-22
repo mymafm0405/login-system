@@ -9,6 +9,7 @@ import { User } from './user.model';
 export class LoginService {
   myApis = 'AIzaSyCZkrDrAYMUayzM4Bvifkh4VNnds94TqWc';
   user = new BehaviorSubject<User>(null);
+  logoutTimer: any;
 
   constructor(private http: HttpClient) {}
 
@@ -34,5 +35,20 @@ export class LoginService {
         returnSecureToken: true,
       }
     );
+  }
+
+  logout() {
+    this.user.next(null);
+    localStorage.removeItem('userData')
+    if (this.logoutTimer) {
+      clearTimeout(this.logoutTimer);
+    }
+    this.logoutTimer = null;
+  }
+
+  autoLogout(expireTime: number) {
+    this.logoutTimer = setTimeout(() => {
+      this.logout()
+    }, 10000)
   }
 }

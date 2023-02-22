@@ -31,9 +31,14 @@ export class LoginFormComponent {
         .subscribe({
           next: (user: User) => {
             this.loginServ.user.next(user);
-            localStorage.setItem('userData', JSON.stringify(user))
-            console.log(user);
+            const expireDate = new Date(
+              new Date().getTime() + +user.expiresIn * 1000
+            );
+            const loadedUser = { ...user, expDate: expireDate };
+            localStorage.setItem('userData', JSON.stringify(loadedUser));
+            console.log(loadedUser);
             this.loading = false;
+            this.loginServ.autoLogout(+user.expiresIn * 1000);
           },
           error: (e) => {
             this.error = e.error.error.message;
@@ -49,13 +54,22 @@ export class LoginFormComponent {
       this.loginServ
         .signUp(this.myForm.value.email, this.myForm.value.password)
         .subscribe({
-          next: (s: User) => {
+          next: (user: User) => {
             // this.success = true;
             this.loading = false;
             console.log(this.loginServ.user);
-            this.loginServ.user.next(s);
-            console.log(s);
+
+            const expireDate = new Date(
+              new Date().getTime() + +user.expiresIn * 1000
+            );
+            const loadedUser = { ...user, expDate: expireDate };
+            localStorage.setItem('userData', JSON.stringify(loadedUser));
+            console.log(loadedUser);
+
+            this.loginServ.user.next(user);
+            console.log(user);
             console.log(this.loginServ.user.value);
+            this.loginServ.autoLogout(+user.expiresIn * 1000);
           },
           error: (e) => {
             this.error = e.error.error.message;
