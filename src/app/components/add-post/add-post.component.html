@@ -1,4 +1,4 @@
-<form>
+<form (ngSubmit)="onSubmit()" #f="ngForm">
   <div class="form-group">
     <label for="title">Post title:</label>
     <input
@@ -8,6 +8,7 @@
       placeholder="Post title"
       ngModel
       name="title"
+      required
     />
   </div>
   <div class="form-group">
@@ -18,9 +19,12 @@
       placeholder="Image URL"
       ngModel
       name="img"
+      (change)="onImgChange()"
+      required
     />
     <div class="post-image">
-      <img src="" class="img-responsive" alt="POST IMAGE" />
+      <img *ngIf="!viewImage" src="../../../assets/holder.PNG" alt="POST IMAGE" />
+      <img *ngIf="viewImage" [src]="imageSrc" alt="POST IMAGE" />
     </div>
   </div>
   <div class="form-group">
@@ -29,12 +33,13 @@
       class="form-control"
       rows="6"
       id="desc"
-      placeholder="Post title"
+      placeholder="Post Description"
       ngModel
       name="desc"
+      required
     ></textarea>
   </div>
   <div class="form-group">
-    <button class="btn btn-success">Save Post</button>
+    <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save Post</button>
   </div>
 </form>
