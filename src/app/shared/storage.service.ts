@@ -6,7 +6,6 @@ import { Post } from './post.model';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
-  posts: Post[] = [];
 
   constructor(private http: HttpClient, private loginServ: LoginService) {}
 
@@ -22,22 +21,19 @@ export class StorageService {
   }
 
   getAllPosts() {
-    const idToken = this.loginServ.user.value.idToken;
     return this.http
       .get(
-        'https://login-system-1ef04-default-rtdb.firebaseio.com/posts.json',
-        {
-          params: new HttpParams().set('auth', idToken),
-        }
+        'https://login-system-1ef04-default-rtdb.firebaseio.com/posts.json'
       )
       .pipe(
         map((res) => {
+          const posts: Post[] = [];
           for (const key in res) {
             if (res.hasOwnProperty(key)) {
-              this.posts.push({ ...res[key], id: key });
+              posts.push({ ...res[key], id: key });
             }
           }
-          return this.posts;
+          return posts;
         })
       );
   }

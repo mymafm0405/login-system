@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from 'src/app/shared/login.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+  loggedIn = false;
 
+  constructor(private loginServ: LoginService) {}
+
+  ngOnInit() {
+    this.loginServ.user.subscribe(user => {
+      this.loggedIn = !!user;
+    })
+  }
 }

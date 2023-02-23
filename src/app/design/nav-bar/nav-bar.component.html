@@ -26,4 +26,14 @@
       >Manage</a
     >
   </li>
+  <li role="presentation" routerLinkActive="active" *ngIf="!loggedIn">
+    <a
+      routerLink="/auth"
+      routerLinkActive="active"
+      aria-controls="messages"
+      role="tab"
+      data-toggle="tab"
+      >Sign-In</a
+    >
+  </li>
 </ul>

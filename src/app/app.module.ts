@@ -23,7 +23,12 @@ const appRoutes: Routes = [
     component: AddPostContainerComponent,
     canActivate: [AuthGuardService],
   },
-  { path: 'manage', component: ManageComponent },
+  {
+    path: 'manage',
+    component: ManageComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: 'auth', component: FormContainerComponent },
 ];
 
 @NgModule({
