@@ -4,3 +4,8 @@
         <button class="btn btn-danger" *ngIf="loggedIn" (click)="onLogout()">Logout</button>
     </div>
 </div>
+<div class="row" *ngIf="loggedIn">
+    <div class="col-xs-12">
+        <app-nav-bar></app-nav-bar>
+    </div>
+</div>

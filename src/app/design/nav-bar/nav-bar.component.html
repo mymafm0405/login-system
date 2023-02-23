@@ -1,0 +1,29 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li
+    role="presentation"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a routerLink="/" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+  </li>
+  <li role="presentation" routerLinkActive="active">
+    <a
+      routerLink="/add-post"
+      routerLinkActive="active"
+      aria-controls="profile"
+      role="tab"
+      data-toggle="tab"
+      >Add Post</a
+    >
+  </li>
+  <li role="presentation" routerLinkActive="active">
+    <a
+      routerLink="/manage"
+      routerLinkActive="active"
+      aria-controls="messages"
+      role="tab"
+      data-toggle="tab"
+      >Manage</a
+    >
+  </li>
+</ul>
