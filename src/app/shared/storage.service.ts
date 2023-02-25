@@ -9,6 +9,7 @@ import { Post } from './post.model';
 export class StorageService {
   postsChanged = new Subject<boolean>();
   showModal = new Subject<{show: boolean, post: Post}>();
+  // currentPost = new Subject<Post>();
 
   constructor(private http: HttpClient, private loginServ: LoginService) {}
 

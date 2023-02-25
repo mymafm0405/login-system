@@ -1,0 +1,13 @@
+<div class="row" *ngIf="!loading && !post">
+  <div class="col-xs-12">
+    <h4>Error loading your post.</h4>
+  </div>
+</div>
+<app-loading *ngIf="loading"></app-loading>
+<div class="row" *ngIf="post">
+  <div class="col-xs-12">
+    <h1>{{ post.title }}</h1>
+    <img [src]="post.imageUrl" [alt]="post.title" />
+    <h4>{{ post.description }}</h4>
+  </div>
+</div>

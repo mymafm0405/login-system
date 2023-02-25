@@ -17,6 +17,7 @@ import { ManageComponent } from './design/manage/manage.component';
 import { AuthGuardService } from './components/auth/auth-guard.service';
 import { PostComponent } from './components/post/post.component';
 import { ModalComponent } from './design/modal/modal.component';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -29,6 +30,10 @@ const appRoutes: Routes = [
     path: 'manage',
     component: ManageComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'post-details/:id',
+    component: PostDetailsComponent,
   },
   { path: 'auth', component: FormContainerComponent },
 ];
@@ -47,6 +52,7 @@ const appRoutes: Routes = [
     ManageComponent,
     PostComponent,
     ModalComponent,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule,

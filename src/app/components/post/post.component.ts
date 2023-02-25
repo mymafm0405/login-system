@@ -29,4 +29,8 @@ export class PostComponent {
 
     this.storageServ.showModal.next({ show: true, post: this.post });
   }
+
+  // onPostClick() {
+  //   this.storageServ.currentPost.next(this.post);
+  // }
 }
