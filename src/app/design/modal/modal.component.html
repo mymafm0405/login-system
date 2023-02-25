@@ -1,7 +1,8 @@
 <div class="main-box">
-  <div class="second-box">
-    <h3>Are you sure want to delete ?</h3>
-    <button class="btn btn-default">Close</button> |
-    <button class="btn btn-danger">Yes, Delete</button>
+  <div class="second-box text-center">
+    <h3>{{message}}</h3>
+    <br>
+    <button class="btn btn-default" (click)="onClose()" [disabled]="loading">Close</button> |
+    <button class="btn btn-danger" (click)="onConfirm()" [disabled]="loading">Yes, Delete</button>
   </div>
 </div>

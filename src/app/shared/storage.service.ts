@@ -8,6 +8,7 @@ import { Post } from './post.model';
 @Injectable({ providedIn: 'root' })
 export class StorageService {
   postsChanged = new Subject<boolean>();
+  showModal = new Subject<{show: boolean, post: Post}>();
 
   constructor(private http: HttpClient, private loginServ: LoginService) {}
 

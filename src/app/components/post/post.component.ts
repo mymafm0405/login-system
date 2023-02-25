@@ -25,6 +25,8 @@ export class PostComponent {
   }
 
   onDelete() {
-    this.storageServ.deletePost(this.post.id).subscribe();
+    console.log(this.post);
+
+    this.storageServ.showModal.next({ show: true, post: this.post });
   }
 }
