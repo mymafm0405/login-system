@@ -36,12 +36,19 @@ export class AddPostComponent {
 
   onSubmit() {
     this.loading = true;
+    const date = new Date();
+    const myDate = date.toISOString().split('T')[0]
+    // const year = new Date().getFullYear();
+    // const month = new Date().getMonth() + 1;
+    // const day = new Date().getDay()
 
     const newPost = new Post(
       this.loginServ.user.value.localId,
       this.myForm.value.title,
       this.myForm.value.desc,
-      this.myForm.value.img
+      this.myForm.value.img,
+      this.loginServ.user.value.email,
+      myDate
     );
     this.storageServ
       .addPost(newPost)
