@@ -13,6 +13,8 @@ export class AppComponent {
   ngOnInit() {
     const userData = JSON.parse(localStorage.getItem('userData'));
     if (userData) {
+      console.log(userData);
+      
       const currentUser = new User(
         userData.idToken,
         userData.email,
@@ -20,7 +22,7 @@ export class AppComponent {
         userData.expiresIn,
         userData.localId
       );
-      if (userData.expDate < new Date()) {
+      if (new Date(userData.expDate).getTime() < new Date().getTime()) {
         console.log('user expired');
 
         console.log(userData.expDate);

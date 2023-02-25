@@ -19,7 +19,9 @@ export class PostComponent {
   ) {}
 
   ngOnInit() {
-    this.owner = this.loginServ.user.value.localId === this.post.userId;
+    if (this.loginServ.user.value) {
+      this.owner = this.loginServ.user.value.localId === this.post.userId;
+    }
   }
 
   onDelete() {
