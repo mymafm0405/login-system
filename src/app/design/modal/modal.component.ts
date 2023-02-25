@@ -14,15 +14,6 @@ export class ModalComponent {
 
   constructor(private storageServ: StorageService) {}
 
-  ngOnInit() {
-    // this.storageServ.showModal.subscribe((status) => {
-    //   console.log(status.post);
-
-    //   this.post = status.post;
-    //   console.log(this.post);
-    // });
-  }
-
   onClose() {
     this.storageServ.showModal.next({ show: false, post: null });
   }
