@@ -15,6 +15,7 @@ import { HomePageComponent } from './design/home-page/home-page.component';
 import { NavBarComponent } from './design/nav-bar/nav-bar.component';
 import { ManageComponent } from './design/manage/manage.component';
 import { AuthGuardService } from './components/auth/auth-guard.service';
+import { PostComponent } from './components/post/post.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     HomePageComponent,
     NavBarComponent,
     ManageComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

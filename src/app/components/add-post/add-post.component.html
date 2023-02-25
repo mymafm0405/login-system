@@ -28,7 +28,7 @@
         src="../../../assets/holder.PNG"
         alt="POST IMAGE"
       />
-      <img *ngIf="viewImage" [src]="imageSrc" alt="POST IMAGE" />
+      <img *ngIf="viewImage" [src]="imageSrc" alt="POST IMAGE" (error)="onError()" />
     </div>
   </div>
   <div class="form-group">

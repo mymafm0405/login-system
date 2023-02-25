@@ -2,15 +2,7 @@
   <app-loading *ngIf="loading"></app-loading>
 </div>
 <div *ngIf="allPosts.length > 0 && !loading">
-  <div class="row" *ngFor="let post of allPosts">
-    <div class="col-xs-4">
-      <img [src]="post.imageUrl" [alt]="post.title" />
-    </div>
-    <div class="col-xs-8">
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.description }}</p>
-    </div>
-  </div>
+  <app-post *ngFor="let post of allPosts" [post]="post"></app-post>
 </div>
 <div class="row text-center" *ngIf="allPosts.length === 0 && !loading">
   <div class="col-xs-12">

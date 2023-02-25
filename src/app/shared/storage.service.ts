@@ -1,11 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { LoginService } from './login.service';
 import { Post } from './post.model';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
+  postsChanged = new Subject<boolean>();
 
   constructor(private http: HttpClient, private loginServ: LoginService) {}
 
@@ -22,9 +24,7 @@ export class StorageService {
 
   getAllPosts() {
     return this.http
-      .get(
-        'https://login-system-1ef04-default-rtdb.firebaseio.com/posts.json'
-      )
+      .get('https://login-system-1ef04-default-rtdb.firebaseio.com/posts.json')
       .pipe(
         map((res) => {
           const posts: Post[] = [];
@@ -34,6 +34,24 @@ export class StorageService {
             }
           }
           return posts;
+        })
+      );
+  }
+
+  deletePost(postId: string) {
+    const idToken = this.loginServ.user.value.idToken;
+    return this.http
+      .delete(
+        'https://login-system-1ef04-default-rtdb.firebaseio.com/posts/' +
+          postId +
+          '.json',
+        {
+          params: new HttpParams().set('auth', idToken),
+        }
+      )
+      .pipe(
+        tap(() => {
+          this.postsChanged.next(true);
         })
       );
   }

@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-4">
+    <img [src]="post.imageUrl" [alt]="post.title" />
+  </div>
+  <div class="col-xs-8">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.description }}</p>
+  </div>
+  <div class="col-xs-12" *ngIf="owner">
+    <button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button> |
+    <button class="btn btn-danger" (click)="onDelete()"><span class="glyphicon glyphicon-remove"></span></button>
+  </div>
+</div>
